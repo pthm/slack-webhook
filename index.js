@@ -1,6 +1,7 @@
 var request = require('superagent');
 var q = require('q')
 var _ = require('lodash');
+var is = require('is-js');
 
 module.exports = function(options){
 	var defaultPayload = {
@@ -16,12 +17,17 @@ module.exports = function(options){
 	}
 
 	return {
-		send: function(text){
-			var payload = {
-				text: text
+		send: function(payload){
+			if(is.string(payload)){
+				finalPayload = {
+					text: payload
+				}
+			} else {
+				finalPayload = payload;
 			}
+
 			var deferred = q.defer();
-			sendRequest(_.merge(defaultPayload, payload), function(err, res){
+			sendRequest(_.merge(defaultPayload, finalPayload), function(err, res){
 				if(err){
 					deferred.reject(err)
 				}

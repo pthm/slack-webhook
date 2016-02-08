@@ -1,12 +1,13 @@
 {
   "name": "slack-webhook",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Send messages to slack incoming webhook",
   "main": "index.js",
   "dependencies": {
-    "superagent": "~1.7.2",
+    "is-js": "^0.1.1",
+    "lodash": "~4.3.0",
     "q": "~1.4.1",
-    "lodash": "~4.3.0"
+    "superagent": "~1.7.2"
   },
   "devDependencies": {},
   "scripts": {
