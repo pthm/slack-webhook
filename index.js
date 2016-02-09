@@ -27,7 +27,7 @@ module.exports = function(options){
 			}
 
 			var deferred = q.defer();
-			sendRequest(_.merge(defaultPayload, finalPayload), function(err, res){
+			sendRequest(_.merge(_.clone(defaultPayload), finalPayload), function(err, res){
 				if(err){
 					deferred.reject(err)
 				}
