@@ -4,7 +4,6 @@
   "description": "Send messages to slack incoming webhook",
   "main": "index.js",
   "dependencies": {
-    "is-js": "^0.1.1",
     "lodash": "~4.3.0",
     "q": "~1.4.1",
     "superagent": "~1.7.2"

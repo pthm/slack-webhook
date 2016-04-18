@@ -1,7 +1,6 @@
 var request = require('superagent')
 var q = require('q')
 var _ = require('lodash')
-var is = require('is-js')
 
 module.exports = function (options) {
   var defaultPayload = {
@@ -20,7 +19,7 @@ module.exports = function (options) {
     send: function (payload) {
       var finalPayload
 
-      if (is.string(payload)) {
+      if (typeof payload === 'string') {
         finalPayload = {
           text: payload
         }
