@@ -9,9 +9,13 @@
     "q": "~1.4.1",
     "superagent": "~1.7.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "snazzy": "^3.0.1",
+    "standard": "^6.0.8"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard | snazzy",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
