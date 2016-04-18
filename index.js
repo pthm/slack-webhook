@@ -1,5 +1,4 @@
 var request = require('superagent')
-var q = require('q')
 var _ = require('lodash')
 
 module.exports = function (options) {
@@ -10,6 +9,7 @@ module.exports = function (options) {
 
   var webhookUrl = options.url
   defaultPayload = options.payload || defaultPayload
+  var PromiseWrapper = options.promise || Promise
 
   function sendRequest (payload, cb) {
     return request.post(webhookUrl).send(payload).end(cb)
@@ -27,14 +27,14 @@ module.exports = function (options) {
         finalPayload = payload
       }
 
-      var deferred = q.defer()
-      sendRequest(_.merge(_.clone(defaultPayload), finalPayload), function (err, res) {
-        if (err) {
-          deferred.reject(err)
-        }
-        deferred.resolve(res)
+      return new PromiseWrapper(function (resolve, reject) {
+        sendRequest(_.merge(_.clone(defaultPayload), finalPayload), function (err, res) {
+          if (err) {
+            return reject(err)
+          }
+          resolve(res)
+        })
       })
-      return deferred.promise
     }
   }
 }
